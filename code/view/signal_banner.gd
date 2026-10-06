@@ -47,7 +47,8 @@ func flash() -> void:
 func _process(delta: float) -> void:
 	_time += delta
 	_flash = maxf(0.0, _flash - delta * 1.6)
-	queue_redraw()
+	if _flash > 0.0 or not drop_preview.is_empty() or Engine.get_process_frames() % 6 == 0:
+		queue_redraw()
 
 
 func _gui_input(event: InputEvent) -> void:

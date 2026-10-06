@@ -9,7 +9,8 @@ var _time := 0.0
 func _process(delta: float) -> void:
 	var k := 1.0 if Game.is_time_flowing() else 0.25
 	_time += delta * k
-	queue_redraw()
+	if Engine.get_process_frames() % (4 if Screen.low_power else 2) == 0:
+		queue_redraw()
 
 
 func _draw() -> void:

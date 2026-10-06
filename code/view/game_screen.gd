@@ -64,6 +64,14 @@ func _ready() -> void:
 	resized.connect(_relayout)
 	_relayout()
 	title.show_intro()
+	# Debug FPS readout: open the web build with #fps, or run with -- --fps.
+	var want_fps := "--fps" in OS.get_cmdline_user_args()
+	if OS.has_feature("web"):
+		want_fps = want_fps or str(JavaScriptBridge.eval("location.hash", true)).contains("fps")
+	if want_fps:
+		_fps = Kit.label("", 13, Kit.GREEN, "mono_bold")
+		_fps.z_index = 100
+		add_child(_fps)
 	if "--capture" in OS.get_cmdline_user_args() and ResourceLoader.exists("res://code/debug/capture.gd"):
 		var c: Node = load("res://code/debug/capture.gd").new()
 		c.set("main", self)
@@ -175,6 +183,15 @@ func _on_map_target(t: Dictionary, _at: Vector2) -> void:
 					sheet.open(ev2)
 					return
 		map.focus_dept(t.id)
+
+
+var _fps: Label
+
+
+func _process(_d: float) -> void:
+	if _fps:
+		_fps.text = "%d fps · %dx%d · dpr %.1f" % [Engine.get_frames_per_second(), get_viewport().get_visible_rect().size.x * Screen.dpr, get_viewport().get_visible_rect().size.y * Screen.dpr, Screen.dpr]
+		_fps.position = Screen.safe.position + Vector2(8, 60)
 
 
 func _unhandled_input(event: InputEvent) -> void:

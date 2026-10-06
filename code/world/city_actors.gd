@@ -72,7 +72,11 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 
+var B := MeshBatch.new()
+
+
 func _draw() -> void:
+	B.clear()
 	lights.clear()
 	# Painter order inside the actor layer: sort everything by depth (x + y).
 	var items: Array = []
@@ -117,6 +121,7 @@ func _draw() -> void:
 				_ped(it.p, it.c)
 			"staff":
 				_staff(it.s, it.p)
+	B.commit(self)
 
 
 func _route_pos(route: Array, k: float) -> Dictionary:
@@ -144,48 +149,48 @@ func _vehicle(c: Vector2, dir: Vector2, length: float, width: float, h: float, c
 	var left := col.darkened(0.15)
 	var right := col.darkened(0.45)
 	# Shadow
-	draw_colored_polygon(Iso.quad(x0 - 0.05, y0 - 0.05, hx * 2 + 0.15, hy * 2 + 0.15), Color(0, 0, 0, 0.35))
-	draw_colored_polygon(PackedVector2Array([Iso.pxy(x0, y1, 1), Iso.pxy(x1, y1, 1), Iso.pxy(x1, y1, h), Iso.pxy(x0, y1, h)]), left)
-	draw_colored_polygon(PackedVector2Array([Iso.pxy(x1, y1, 1), Iso.pxy(x1, y0, 1), Iso.pxy(x1, y0, h), Iso.pxy(x1, y1, h)]), right)
-	draw_colored_polygon(Iso.quad(x0, y0, hx * 2, hy * 2, h), col.lightened(0.05))
+	B.colored_polygon(Iso.quad(x0 - 0.05, y0 - 0.05, hx * 2 + 0.15, hy * 2 + 0.15), Color(0, 0, 0, 0.35))
+	B.colored_polygon(PackedVector2Array([Iso.pxy(x0, y1, 1), Iso.pxy(x1, y1, 1), Iso.pxy(x1, y1, h), Iso.pxy(x0, y1, h)]), left)
+	B.colored_polygon(PackedVector2Array([Iso.pxy(x1, y1, 1), Iso.pxy(x1, y0, 1), Iso.pxy(x1, y0, h), Iso.pxy(x1, y1, h)]), right)
+	B.colored_polygon(Iso.quad(x0, y0, hx * 2, hy * 2, h), col.lightened(0.05))
 	if not ambulance and h < 8.0:
 		# Cabin
 		var cx0 := x0 + (hx * 0.5 if along_x else 0.0)
 		var cy0 := y0 + (0.0 if along_x else hy * 0.5)
 		var cw := hx if along_x else hx * 2
 		var cd := hy * 2 if along_x else hy
-		draw_colored_polygon(Iso.quad(cx0, cy0, cw, cd, h + 3.5), col.darkened(0.1))
-		draw_colored_polygon(PackedVector2Array([Iso.pxy(cx0, cy0 + cd, h), Iso.pxy(cx0 + cw, cy0 + cd, h), Iso.pxy(cx0 + cw, cy0 + cd, h + 3.5), Iso.pxy(cx0, cy0 + cd, h + 3.5)]), Color(0.15, 0.2, 0.26, 0.9))
+		B.colored_polygon(Iso.quad(cx0, cy0, cw, cd, h + 3.5), col.darkened(0.1))
+		B.colored_polygon(PackedVector2Array([Iso.pxy(cx0, cy0 + cd, h), Iso.pxy(cx0 + cw, cy0 + cd, h), Iso.pxy(cx0 + cw, cy0 + cd, h + 3.5), Iso.pxy(cx0, cy0 + cd, h + 3.5)]), Color(0.15, 0.2, 0.26, 0.9))
 	if ambulance:
 		var stripe := Color(0.75, 0.15, 0.13, 0.95)
-		draw_colored_polygon(PackedVector2Array([Iso.pxy(x0, y1, 4), Iso.pxy(x1, y1, 4), Iso.pxy(x1, y1, 5.5), Iso.pxy(x0, y1, 5.5)]), stripe)
-		draw_colored_polygon(PackedVector2Array([Iso.pxy(x1, y1, 4), Iso.pxy(x1, y0, 4), Iso.pxy(x1, y0, 5.5), Iso.pxy(x1, y1, 5.5)]), stripe.darkened(0.3))
+		B.colored_polygon(PackedVector2Array([Iso.pxy(x0, y1, 4), Iso.pxy(x1, y1, 4), Iso.pxy(x1, y1, 5.5), Iso.pxy(x0, y1, 5.5)]), stripe)
+		B.colored_polygon(PackedVector2Array([Iso.pxy(x1, y1, 4), Iso.pxy(x1, y0, 4), Iso.pxy(x1, y0, 5.5), Iso.pxy(x1, y1, 5.5)]), stripe.darkened(0.3))
 		var top := Iso.p(c, h + 2)
 		if beacon:
 			var phase := fmod(_time * 3.0, 1.0)
 			var bc := Color(0.35, 0.55, 1.0) if phase < 0.5 else Color(1.0, 0.25, 0.2)
-			draw_circle(top, 2.2, bc)
+			B.circle(top, 2.2, bc)
 			lights.append([Iso.p(c), 56.0, Color(bc.r, bc.g, bc.b, 0.4), true])
 		else:
-			draw_circle(top, 1.6, Color(0.3, 0.4, 0.6))
+			B.circle(top, 1.6, Color(0.3, 0.4, 0.6))
 	if lit:
 		var front := c + dir * (length * 0.5)
 		var back := c - dir * (length * 0.5)
 		var side := Vector2(-dir.y, dir.x) * width * 0.3
-		draw_circle(Iso.p(front + side, 3), 1.3, Color(1, 0.95, 0.8))
-		draw_circle(Iso.p(front - side, 3), 1.3, Color(1, 0.95, 0.8))
-		draw_circle(Iso.p(back + side, 3), 1.1, Color(1, 0.2, 0.15))
-		draw_circle(Iso.p(back - side, 3), 1.1, Color(1, 0.2, 0.15))
+		B.circle(Iso.p(front + side, 3), 1.3, Color(1, 0.95, 0.8))
+		B.circle(Iso.p(front - side, 3), 1.3, Color(1, 0.95, 0.8))
+		B.circle(Iso.p(back + side, 3), 1.1, Color(1, 0.2, 0.15))
+		B.circle(Iso.p(back - side, 3), 1.1, Color(1, 0.2, 0.15))
 		lights.append([Iso.p(front + dir * 0.9), 26.0, Color(1.0, 0.9, 0.7, 0.22), true])
 
 
 func _ped(p: Vector2, d: Dictionary) -> void:
 	var s := Iso.p(p)
 	var bob := sin(_time * 8.0 + p.x * 3.0) * 0.5
-	draw_line(s, s - Vector2(0, 6 + bob), d.coat, 2.2)
-	draw_circle(s - Vector2(0, 7.5 + bob), 1.4, Color(0.55, 0.5, 0.45))
+	B.line(s, s - Vector2(0, 6 + bob), d.coat, 2.2)
+	B.circle(s - Vector2(0, 7.5 + bob), 1.4, Color(0.55, 0.5, 0.45))
 	if d.umbrella:
-		draw_arc(s - Vector2(0, 9.5 + bob), 4.0, PI, TAU, 8, Color(0.08, 0.09, 0.11), 2.0)
+		B.arc(s - Vector2(0, 9.5 + bob), 4.0, PI, TAU, 8, Color(0.08, 0.09, 0.11), 2.0)
 
 
 func _staff(s: StaffMember, p: Vector2) -> void:
@@ -197,17 +202,17 @@ func _staff(s: StaffMember, p: Vector2) -> void:
 	ring.a = 0.85 if selected else 0.4
 	if selected:
 		var pulse := 1.0 + 0.15 * sin(_time * 6.0)
-		draw_arc(w, 7.0 * pulse, 0, TAU, 20, Color(1, 1, 1, 0.9), 1.5)
+		B.arc(w, 7.0 * pulse, 0, TAU, 20, Color(1, 1, 1, 0.9), 1.5)
 	_ellipse(w, 5.5, ring, 1.2)
 	var body: Color = CATEGORY_COLORS.get(s.data.category, Color.WHITE)
 	if s.is_locked():
 		body = body.darkened(0.5)
-	draw_line(w - Vector2(1.5, 0), w - Vector2(1.5, 5 + bob), Color("1b1f25"), 1.6)
-	draw_line(w + Vector2(1.5, 0), w + Vector2(1.5, 5 - bob), Color("1b1f25"), 1.6)
-	draw_colored_polygon(PackedVector2Array([w + Vector2(-3.5, -4), w + Vector2(3.5, -4), w + Vector2(3, -12 + bob), w + Vector2(-3, -12 + bob)]), body)
-	draw_circle(w - Vector2(0, 14.5 - bob), 2.6, Color(0.82, 0.68, 0.58))
+	B.line(w - Vector2(1.5, 0), w - Vector2(1.5, 5 + bob), Color("1b1f25"), 1.6)
+	B.line(w + Vector2(1.5, 0), w + Vector2(1.5, 5 - bob), Color("1b1f25"), 1.6)
+	B.colored_polygon(PackedVector2Array([w + Vector2(-3.5, -4), w + Vector2(3.5, -4), w + Vector2(3, -12 + bob), w + Vector2(-3, -12 + bob)]), body)
+	B.circle(w - Vector2(0, 14.5 - bob), 2.6, Color(0.82, 0.68, 0.58))
 	if s.data.category == "security":
-		draw_line(w - Vector2(3, 16.5 - bob), w - Vector2(-3, 16.5 - bob), Color("1a2230"), 2.0)
+		B.line(w - Vector2(3, 16.5 - bob), w - Vector2(-3, 16.5 - bob), Color("1a2230"), 2.0)
 	lights.append([w, 14.0, Color(s.data.accent.r, s.data.accent.g, s.data.accent.b, 0.18 if selected else 0.08)])
 
 
@@ -216,7 +221,7 @@ func _ellipse(c: Vector2, r: float, col: Color, width: float) -> void:
 	for i in 21:
 		var a := TAU * i / 20.0
 		pts.append(c + Vector2(cos(a) * r, sin(a) * r * 0.5))
-	draw_polyline(pts, col, width, true)
+	B.polyline(pts, col, width, true)
 
 
 ## Staff token hit test in world coords.

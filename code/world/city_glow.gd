@@ -42,9 +42,15 @@ static func radial_texture() -> Texture2D:
 	return t
 
 
+var _acc := 0.0
+
+
 func _process(delta: float) -> void:
 	_time += delta
-	queue_redraw()
+	_acc += delta
+	if _acc > (1.0 / 15.0 if Screen.low_power else 1.0 / 30.0):
+		_acc = 0.0
+		queue_redraw()
 
 
 func pool(world: Vector2, radius: float, col: Color) -> void:

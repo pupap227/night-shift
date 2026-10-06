@@ -16,6 +16,17 @@ func _ready() -> void:
 			tag = a.substr(6)
 	DirAccess.make_dir_recursive_absolute(OUT)
 	await wait(1.0)
+	if "--perf" in OS.get_cmdline_user_args():
+		await tap_control(_find_button(main.title, "НАЧАТЬ СМЕНУ"))
+		Game.set_speed(3)
+		await wait(4.0)
+		var samples: Array = []
+		for i in 8:
+			await wait(0.5)
+			samples.append(Engine.get_frames_per_second())
+		print("PERF fps=", samples, " canvas_items=", Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME), " objects=", Performance.get_monitor(Performance.OBJECT_COUNT))
+		get_tree().quit()
+		return
 	await shot("0_intro")
 	await tap_control(_find_button(main.title, "НАЧАТЬ СМЕНУ"))
 	await wait(0.6)

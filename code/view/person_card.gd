@@ -17,6 +17,7 @@ var _str := 0.0
 var _flash := 0.0
 var _time := 0.0
 var _lift_tw: Tween
+var _sig := ""
 
 
 func setup(sid: String, lay: String) -> void:
@@ -73,7 +74,12 @@ func _process(delta: float) -> void:
 	_fat = lerpf(_fat, s.fatigue, minf(1.0, delta * 5.0))
 	_str = lerpf(_str, s.stress, minf(1.0, delta * 5.0))
 	_flash = maxf(0.0, _flash - delta * 1.8)
-	queue_redraw()
+	var sig := "%d|%d|%d|%s|%.2f|%.2f|%.2f|%s" % [int(_fat), int(_str), s.state, s.case_uid, lifted, dimmed, _flash, Game.selected_staff_id == staff_id]
+	if s.state == StaffMember.State.WORKING or s.state == StaffMember.State.MOVING or s.is_locked():
+		sig += str(int(Game.minutes))
+	if sig != _sig or ghost:
+		_sig = sig
+		queue_redraw()
 
 
 ## Short status: label + colour. "ОПЕРАЦИЯ · 12 мин" beats "НА ЗАДАНИИ".

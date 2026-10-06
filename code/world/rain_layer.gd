@@ -12,7 +12,7 @@ var _rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_rng.seed = 7
-	for i in DROPS:
+	for i in (110 if Screen.low_power else DROPS):
 		_drops.append(_new_drop(true))
 
 

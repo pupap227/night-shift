@@ -191,6 +191,7 @@ func _process(delta: float) -> void:
 	elif Game.alarm_level == 1:
 		ta = 0.02
 	crisis_tint.color.a = lerpf(crisis_tint.color.a, ta, delta * 3.0)
+	crisis_tint.visible = crisis_tint.color.a > 0.004
 	for id in _pins:
 		_pins[id].place()
 

@@ -12,6 +12,10 @@ var size := Vector2(1920, 1080)        # logical canvas size
 var dpr := 1.0                         # physical px per logical px
 var safe := Rect2()                    # safe rect in logical coords
 var touch := false                     # primary input looks like touch
+var low_power := false                 # phones / web: cheaper effects, fewer redraws
+var _fps_acc := 0.0
+var _fps_low := 0.0
+var _downgraded := false
 var _forced_dpr := 0.0
 var _forced_insets := []               # [top, right, bottom, left] for screenshots / testing
 
@@ -24,6 +28,7 @@ func _ready() -> void:
 		elif a.begins_with("--safe="):
 			_forced_insets = Array(a.substr(7).split(",")).map(func(x): return float(x))
 	touch = DisplayServer.is_touchscreen_available() or OS.has_feature("web_ios") or OS.has_feature("web_android")
+	low_power = OS.has_feature("web") or OS.has_feature("mobile")
 	get_tree().root.size_changed.connect(_apply)
 	_apply.call_deferred()
 
@@ -53,6 +58,23 @@ func _apply() -> void:
 	else:
 		mode = Mode.DESKTOP
 	layout_changed.emit()
+
+
+## Web: if the device can't hold ~40 fps at the capped pixel ratio, drop rendering to 1.5×.
+## (The page caps devicePixelRatio to 2 via window.__nsDpr — see export head_include.)
+func _process(delta: float) -> void:
+	if not OS.has_feature("web") or _downgraded:
+		return
+	_fps_acc += delta
+	if _fps_acc < 3.0:
+		return
+	if Engine.get_frames_per_second() < 40:
+		_fps_low += delta
+	else:
+		_fps_low = 0.0
+	if _fps_low > 2.5:
+		_downgraded = true
+		JavaScriptBridge.eval("window.__nsDpr=1.5;window.dispatchEvent(new Event('resize'));", true)
 
 
 func is_phone() -> bool:
