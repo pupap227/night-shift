@@ -46,6 +46,13 @@ func skill_label(skill_id: String) -> String:
 	return skills.get(skill_id, {}).get("label", skill_id)
 
 
+## Optional JSON (empty dict when absent).
+func read_json(file: String) -> Dictionary:
+	if not FileAccess.file_exists(DATA_DIR + file):
+		return {}
+	return _read(file)
+
+
 func _read(file: String) -> Dictionary:
 	var path := DATA_DIR + file
 	if not FileAccess.file_exists(path):

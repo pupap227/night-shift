@@ -72,7 +72,23 @@ func move(at: Vector2) -> void:
 	var lift := Vector2(0, -ghost.size.y * 0.75 - (30.0 if Screen.touch or Screen.is_phone() else 0.0))
 	var p := at + lift - ghost.size * 0.5
 	ghost.global_position = ghost.global_position.lerp(p, 0.55) if ghost.global_position.distance_to(p) > 2 else p
+	_edge_pan(at)
 	_update_target(at)
+
+
+## Holding a card near the screen edge scrolls the map, so off-screen buildings are reachable.
+func _edge_pan(at: Vector2) -> void:
+	var local := map.get_global_transform().affine_inverse() * at
+	var edge := 44.0
+	var v := Vector2.ZERO
+	if local.x < edge:
+		v.x = -1.0
+	elif local.x > map.size.x - edge:
+		v.x = 1.0
+	if local.y < map.view_rect.position.y + edge and local.y > 0:
+		v.y = -1.0
+	if v != Vector2.ZERO:
+		map.pan_by(v * 14.0)
 
 
 func _update_target(at: Vector2) -> void:

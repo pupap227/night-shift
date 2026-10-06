@@ -24,6 +24,7 @@ var dim_layer := DimLayer.new()
 var buildings := CityBuildings.new()
 var atmosphere := CityAtmosphere.new()
 var markers := CityMarkers.new()
+var painted: PaintedMap            # non-null when a painted map is installed (art/city/map_night)
 var rain: RainLayer
 var pins_layer := Control.new()
 var crisis_tint := ColorRect.new()
@@ -63,10 +64,16 @@ func _ready() -> void:
 	markers.actors = actors
 	markers.map = self
 	add_child(world)
-	for n in [ground, glow, actors, dim_layer, buildings, atmosphere, markers]:
-		world.add_child(n)
-	actors.setup(model)
-	buildings.setup(model)
+	var pm := PaintedMap.new()
+	var pcfg: Dictionary = Game.db.read_json("map_painted.json")
+	if not pcfg.is_empty() and pm.load_cfg(pcfg):
+		painted = pm
+		world.add_child(pm)
+	else:
+		for n in [ground, glow, actors, dim_layer, buildings, atmosphere, markers]:
+			world.add_child(n)
+		actors.setup(model)
+		buildings.setup(model)
 	rain = RainLayer.new()
 	add_child(rain)
 	rain.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -95,7 +102,7 @@ func _ready() -> void:
 	for p in model.pois:
 		if p.has("building"):
 			_building_target[p.building] = {"kind": "poi", "id": p.id}
-	center = Iso.p(model.camera_start)
+	center = Iso.p(model.camera_start) if painted == null else painted.focus_world()
 	zoom = model.camera_zoom
 	Game.selection_changed.connect(func(sid): set_targeting(sid))
 	Game.staff_changed.connect(func(_id): _dirty = true)
@@ -136,11 +143,27 @@ func _view_center() -> Vector2:
 func frame_hospital(z: float) -> void:
 	zoom = z
 	center = Iso.p(model.camera_start)
+	if painted:
+		var mode: String = ["portrait", "landscape", "desktop"][Screen.mode]
+		zoom = painted.zoom_for(mode)
+		center = painted.focus_world()
+
+
+## Where a department's pin floats (world coords) — painted or procedural map.
+func pin_world(d: DepartmentData) -> Vector2:
+	if painted:
+		return painted.pin_world(d.id)
+	var b: Dictionary = model.building_by_id.get(d.building_id, {})
+	if b.is_empty():
+		return Iso.p(d.entrance) - Vector2(0, 30)
+	return Iso.p(b.rect.get_center(), b.h) - Vector2(0, 16)
 
 
 func focus_dept(dept_id: String) -> void:
 	var d: DepartmentData = Game.db.departments.get(dept_id)
-	if d:
+	if d and painted:
+		focus_world(painted.center_of(dept_id))
+	elif d:
 		focus_world(Iso.p(d.entrance) - Vector2(0, 20))
 
 
@@ -153,6 +176,8 @@ func focus_world(w: Vector2) -> void:
 
 func dept_screen(dept_id: String) -> Vector2:
 	var d: DepartmentData = Game.db.departments[dept_id]
+	if painted:
+		return world_to_screen(painted.center_of(dept_id))
 	var b: Dictionary = model.building_by_id.get(d.building_id, {})
 	if b.is_empty():
 		return world_to_screen(Iso.p(d.entrance))
@@ -160,6 +185,18 @@ func dept_screen(dept_id: String) -> Vector2:
 
 
 func _clamp_center() -> void:
+	if painted:
+		# Never show past the painting: zoom at least enough to cover the view, keep edges inside.
+		var s := painted.size()
+		var vr := view_rect if view_rect.size.x > 10 else Rect2(Vector2.ZERO, size)
+		var cover := vr.size
+		zoom = maxf(zoom, maxf(cover.x / s.x, cover.y / s.y))
+		var half := vr.size * 0.5 / zoom
+		center.x = s.x * 0.5 if s.x < half.x * 2.0 else clampf(center.x, half.x, s.x - half.x)
+		var top := (vr.get_center().y) / zoom
+		var bottom := (size.y - vr.get_center().y) / zoom
+		center.y = s.y * 0.5 if s.y < top + bottom else clampf(center.y, top, s.y - bottom)
+		return
 	var b := model.world_bounds()
 	center.x = clampf(center.x, b.position.x + 300, b.end.x - 300)
 	center.y = clampf(center.y, b.position.y + 200, b.end.y - 200)
@@ -181,6 +218,9 @@ func _process(delta: float) -> void:
 		if d.building_id != "":
 			keep[d.building_id] = true
 	buildings.set_dim(_dim, keep)
+	if painted:
+		painted.dim = _dim
+		painted.hover_dept = drag_hover_dept
 	if _dirty:
 		_dirty = false
 		_refresh_verdicts()
@@ -248,6 +288,24 @@ func _update_highlights() -> void:
 		if bid != "" and not h.has(bid):
 			h[bid] = Color(0.92, 0.95, 1.0, 0.85 if t == selected else 0.4)
 	buildings.set_highlight(h)
+	if painted:
+		var ph := {}
+		var rings := {}
+		for dep_id in verdicts:
+			var c2: Color = verdicts[dep_id].color
+			c2.a = 1.0 if dep_id == drag_hover_dept else (0.4 if c2 == VERDICT_DUTY else 0.85)
+			ph[dep_id] = c2
+			rings[dep_id] = c2
+		for t in [hover, selected]:
+			if not t.is_empty() and t.kind == "dept" and not ph.has(t.id):
+				ph[t.id] = Color(0.92, 0.95, 1.0, 0.85 if t == selected else 0.4)
+		if verdicts.is_empty():
+			for d2: DepartmentData in Game.db.departments.values():
+				for pc in Game.cases_in(d2.id):
+					if pc.status == PatientCase.Status.WAITING and not pc.open_slots().is_empty():
+						rings[d2.id] = Color(0.9, 0.22, 0.2, 0.55 + 0.35 * sin(_time * 4.0))
+		painted.highlight = ph
+		painted.rings = rings
 
 
 # ------------------------------------------------------------------ picking
@@ -257,6 +315,8 @@ func target_at(local: Vector2) -> Dictionary:
 		if _pins[id].visible and _pins[id].hit_rect().grow(6).has_point(local):
 			return {"kind": "dept", "id": id}
 	var w := screen_to_world(local)
+	if painted:
+		return painted.target_at(w)
 	for ev in Game.events:
 		if ev.data.city_tile.x < 0:
 			continue

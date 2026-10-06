@@ -26,6 +26,10 @@ func bump() -> void:
 
 
 func _anchor_world() -> Vector2:
+	return map.pin_world(dept)
+
+
+func _anchor_world_legacy() -> Vector2:
 	var b: Dictionary = map.model.building_by_id.get(dept.building_id, {})
 	if b.is_empty():
 		return Iso.p(dept.entrance) - Vector2(0, 30)
