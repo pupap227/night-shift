@@ -1,0 +1,22 @@
+{
+  "sfx": {
+    "phone": "res://audio/sfx/phone.wav",
+    "siren": "res://audio/sfx/siren.wav",
+    "door": "res://audio/sfx/door.wav",
+    "steps": "res://audio/sfx/steps.wav",
+    "beep": "res://audio/sfx/beep.wav",
+    "flatline": "res://audio/sfx/flatline.wav",
+    "alarm": "res://audio/sfx/alarm.wav",
+    "assign": "res://audio/sfx/assign.wav",
+    "confirm": "res://audio/sfx/confirm.wav",
+    "error": "res://audio/sfx/error.wav",
+    "click": "res://audio/sfx/click.wav",
+    "pickup": "res://audio/sfx/pickup.wav",
+    "drop": "res://audio/sfx/drop.wav"
+  },
+  "music": {
+    "ambient": "res://audio/music/ambient.wav",
+    "tension": "res://audio/music/tension.wav",
+    "crisis": "res://audio/music/crisis.wav"
+  }
+}

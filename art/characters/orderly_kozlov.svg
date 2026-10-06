@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240">
+<defs>
+<radialGradient id="bg" cx="0.42" cy="0.38" r="0.75"><stop offset="0" stop-color="#28323e"/><stop offset="0.6" stop-color="#141a22"/><stop offset="1" stop-color="#090c10"/></radialGradient>
+<radialGradient id="rim" cx="0.95" cy="0.2" r="0.7"><stop offset="0" stop-color="#a0a8b8" stop-opacity="0.32"/><stop offset="1" stop-color="#a0a8b8" stop-opacity="0"/></radialGradient>
+<linearGradient id="shadow" x1="0" y1="0" x2="1" y2="0"><stop offset="0.38" stop-color="#0c1422" stop-opacity="0"/><stop offset="0.72" stop-color="#0c1422" stop-opacity="0.5"/><stop offset="1" stop-color="#0a101c" stop-opacity="0.7"/></linearGradient>
+<linearGradient id="key" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd9a8" stop-opacity="0.22"/><stop offset="0.45" stop-color="#ffd9a8" stop-opacity="0"/></linearGradient>
+<linearGradient id="bodyshade" x1="0" y1="0" x2="1" y2="0"><stop offset="0.3" stop-color="#05080d" stop-opacity="0"/><stop offset="1" stop-color="#05080d" stop-opacity="0.6"/></linearGradient>
+<linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0.7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.55"/></linearGradient>
+<clipPath id="headclip"><path d="M 138.0 112.0 L 137.5 116.2 L 136.6 120.3 L 135.6 124.4 L 134.2 128.4 L 132.7 132.2 L 130.9 135.9 L 129.0 139.4 L 126.9 142.8 L 124.6 145.8 L 122.2 148.6 L 119.7 151.2 L 117.0 153.4 L 114.3 155.4 L 111.5 157.0 L 108.7 158.2 L 105.8 159.1 L 102.9 159.7 L 100.0 159.8 L 97.1 159.7 L 94.2 159.1 L 91.3 158.2 L 88.5 157.0 L 85.7 155.4 L 83.0 153.4 L 80.3 151.2 L 77.8 148.6 L 75.4 145.8 L 73.1 142.8 L 71.0 139.4 L 69.1 135.9 L 67.3 132.2 L 65.8 128.4 L 64.4 124.4 L 63.4 120.3 L 62.5 116.2 L 62.0 112.0 L 62.1 108.0 L 62.6 104.0 L 63.3 100.1 L 64.3 96.3 L 65.6 92.6 L 67.1 89.0 L 68.9 85.6 L 70.9 82.4 L 73.1 79.5 L 75.6 76.8 L 78.2 74.3 L 81.0 72.2 L 83.9 70.3 L 87.0 68.8 L 90.2 67.6 L 93.4 66.7 L 96.7 66.2 L 100.0 66.0 L 103.3 66.2 L 106.6 66.7 L 109.8 67.6 L 113.0 68.8 L 116.1 70.3 L 119.0 72.2 L 121.8 74.3 L 124.4 76.8 L 126.9 79.5 L 129.1 82.4 L 131.1 85.6 L 132.9 89.0 L 134.4 92.6 L 135.7 96.3 L 136.7 100.1 L 137.4 104.0 L 137.9 108.0 Z"/></clipPath>
+</defs>
+<rect width="200" height="240" fill="url(#bg)"/><rect width="200" height="240" fill="url(#rim)"/>
+<path d="M 0 240 L 0 210 C 19 190 54 179 82 171 L 118 171 C 146 179 181 190 200 210 L 200 240 Z" fill="#4b5867"/>
+<path d="M 70 176 L 92 172 L 96 240 L 60 240 Z" fill="#6f7985" opacity="0.3"/><path d="M 100 186 L 100 240" stroke="#303942" stroke-width="2"/><circle cx="104" cy="205" r="2" fill="#303942"/><circle cx="104" cy="225" r="2" fill="#303942"/>
+<path d="M 0 240 L 0 210 C 19 190 54 179 82 171 L 118 171 C 146 179 181 190 200 210 L 200 240 Z" fill="url(#bodyshade)"/>
+<path d="M 78 140 L 79 176 Q 100 186 121 176 L 122 140 Z" fill="#81614e"/>
+<path d="M 78 150 Q 100 166 122 150 L 122 140 L 78 140 Z" fill="#000" opacity="0.25"/>
+<path d="M 76 168 L 100 182 L 124 168 L 128 178 L 100 196 L 72 178 Z" fill="#303942"/><path d="M 88 176 L 100 188 L 112 176" fill="#3a3f45"/>
+<ellipse cx="64.0" cy="114" rx="7" ry="11" fill="#9e765f"/>
+<ellipse cx="136.0" cy="114" rx="7" ry="11" fill="#6c5141"/>
+<path d="M 138.0 112.0 L 137.5 116.2 L 136.6 120.3 L 135.6 124.4 L 134.2 128.4 L 132.7 132.2 L 130.9 135.9 L 129.0 139.4 L 126.9 142.8 L 124.6 145.8 L 122.2 148.6 L 119.7 151.2 L 117.0 153.4 L 114.3 155.4 L 111.5 157.0 L 108.7 158.2 L 105.8 159.1 L 102.9 159.7 L 100.0 159.8 L 97.1 159.7 L 94.2 159.1 L 91.3 158.2 L 88.5 157.0 L 85.7 155.4 L 83.0 153.4 L 80.3 151.2 L 77.8 148.6 L 75.4 145.8 L 73.1 142.8 L 71.0 139.4 L 69.1 135.9 L 67.3 132.2 L 65.8 128.4 L 64.4 124.4 L 63.4 120.3 L 62.5 116.2 L 62.0 112.0 L 62.1 108.0 L 62.6 104.0 L 63.3 100.1 L 64.3 96.3 L 65.6 92.6 L 67.1 89.0 L 68.9 85.6 L 70.9 82.4 L 73.1 79.5 L 75.6 76.8 L 78.2 74.3 L 81.0 72.2 L 83.9 70.3 L 87.0 68.8 L 90.2 67.6 L 93.4 66.7 L 96.7 66.2 L 100.0 66.0 L 103.3 66.2 L 106.6 66.7 L 109.8 67.6 L 113.0 68.8 L 116.1 70.3 L 119.0 72.2 L 121.8 74.3 L 124.4 76.8 L 126.9 79.5 L 129.1 82.4 L 131.1 85.6 L 132.9 89.0 L 134.4 92.6 L 135.7 96.3 L 136.7 100.1 L 137.4 104.0 L 137.9 108.0 Z" fill="#b4876d"/>
+<g clip-path="url(#headclip)">
+<ellipse cx="100" cy="156" rx="34" ry="16" fill="#000" opacity="0.16"/>
+<path d="M 62 124 Q 77.2 164 100 164 Q 122.8 164 138 124 L 138 182 L 62 182 Z" fill="#2a2522" opacity="0.25"/>
+<ellipse cx="100" cy="144" rx="13" ry="7" fill="#b4876d" opacity="0.55"/>
+<rect x="0" y="0" width="200" height="240" fill="url(#key)"/>
+<rect x="62" y="0" width="76" height="240" fill="url(#shadow)"/>
+</g>
+<path d="M 78 108 Q 85 103.5 92 108 Q 85 111 78 108 Z" fill="#b7b2aa"/>
+<circle cx="85" cy="107.5" r="2.6" fill="#1a1512"/>
+<path d="M 77.5 108.3 Q 85 102.7 92.5 108.3" fill="none" stroke="#1c1512" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 76 97.7 Q 85 95 94 99.8" fill="none" stroke="#2e2824" stroke-width="3.8" stroke-linecap="round" opacity="0.95"/>
+<path d="M 108 108 Q 115 103.5 122 108 Q 115 111 108 108 Z" fill="#76736e"/>
+<circle cx="115" cy="107.5" r="2.6" fill="#1a1512"/>
+<path d="M 107.5 108.3 Q 115 102.7 122.5 108.3" fill="none" stroke="#1c1512" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 106 99.8 Q 115 95 124 97.7" fill="none" stroke="#2e2824" stroke-width="3.8" stroke-linecap="round" opacity="0.7124999999999999"/>
+<path d="M 97 117.9 Q 96 124.5 92 130 Q 100 134 108 130" fill="none" stroke="#684e3f" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
+<path d="M 102 112 L 109 129 L 102 132 Z" fill="#0c1422" opacity="0.22"/>
+<path d="M 87 145 Q 100 145 113 145" fill="none" stroke="#503c31" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M 90.9 148 Q 100 151 109.1 148" fill="none" stroke="#876551" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+<path d="M 81 92 L 91 105" stroke="#c39f8a" stroke-width="1.6" opacity="0.8"/>
+<path d="M 63 100 Q 60 62 100 60 Q 140 62 137 100 Q 134 80 100 76 Q 66 80 63 100 Z" fill="#2e2824" opacity="0.85"/>
+
+<rect width="200" height="240" fill="url(#floor)"/>
+</svg>

@@ -1,0 +1,31 @@
+{
+  "departments": [
+    {"id": "er", "name": "Приёмное отделение", "short": "Приёмное", "kind": "department", "icon": "cross",
+     "concurrent_cases": 3, "building": "b_er", "entrance": [13.5, 19.7],
+     "description": "Сюда привозят всех. Три смотровых, одна каталка с исправными колёсами."},
+    {"id": "or1", "name": "Операционная №1", "short": "Операционная", "kind": "department", "icon": "scalpel",
+     "concurrent_cases": 1, "building": "b_or", "entrance": [20.0, 19.7],
+     "description": "Единственная операционная, работающая ночью. Лампа над столом мигает с весны."},
+    {"id": "icu", "name": "Реанимация", "short": "Реанимация", "kind": "department", "icon": "ecg",
+     "concurrent_cases": 1, "beds": 4, "beds_occupied": 3, "building": "b_icu", "entrance": [21.0, 13.8],
+     "description": "Четыре койки, три заняты. Один аппарат ИВЛ на ремонте."},
+    {"id": "lab", "name": "Лаборатория", "short": "Лаборатория", "kind": "department", "icon": "flask",
+     "concurrent_cases": 2, "building": "b_lab", "entrance": [24.5, 19.7],
+     "description": "Анализы крови, токсикология. Ночью — один лаборант."},
+    {"id": "ward", "name": "Главный корпус · Палаты", "short": "Палаты", "kind": "department", "icon": "bed",
+     "concurrent_cases": 3, "beds": 40, "beds_occupied": 37, "building": "b_ward", "entrance": [13.5, 14.8],
+     "description": "Семь этажей, сорок коек на смену. В коридорах уже стоят раскладушки."},
+    {"id": "staffroom", "name": "Ординаторская · Служебные", "short": "Ординаторская", "kind": "rest", "icon": "rest",
+     "accepts_staff": true, "concurrent_cases": 0, "building": "b_staff", "entrance": [15.0, 24.6],
+     "description": "Чайник, продавленный диван, телефон. Здесь отдыхают и ждут вызова."},
+    {"id": "morgue", "name": "Морг", "short": "Морг", "kind": "service", "icon": "snowflake",
+     "accepts_staff": false, "building": "b_morgue", "entrance": [24.0, 24.6],
+     "description": "Холодильные камеры на шесть мест. Дежурный патологоанатом — по вызову."},
+    {"id": "admin", "name": "Администрация", "short": "Администрация", "kind": "service", "icon": "admin",
+     "accepts_staff": false, "building": "b_admin", "entrance": [12.5, 24.6],
+     "description": "Кабинет главврача заперт. Телефон с прямой линией в горздрав звонит редко. Но звонит."},
+    {"id": "parking", "name": "Парковка · Подъезд скорых", "short": "Парковка", "kind": "service", "icon": "car",
+     "accepts_staff": false, "building": "", "entrance": [20.0, 22.5],
+     "description": "Две машины скорой на ходу из пяти. Третья ждёт запчасть с лета."}
+  ]
+}

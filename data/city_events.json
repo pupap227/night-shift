@@ -1,0 +1,13 @@
+{
+  "city_events": [
+    {"id": "weather",   "time": "22:00", "icon": "rain",      "tone": "info",   "district": "",          "title": "Ливень до утра. Гололёд на эстакаде."},
+    {"id": "flu",       "time": "22:40", "icon": "warning",   "tone": "warn",   "district": "north",     "title": "Северный: вспышка гриппа, поликлиники переполнены."},
+    {"id": "jam",       "time": "23:30", "icon": "car",       "tone": "warn",   "district": "highway",   "title": "Трасса М-7: затор после аварии автобуса."},
+    {"id": "pharmacy",  "time": "00:30", "icon": "flask",     "tone": "warn",   "district": "",          "title": "Аптечный склад №2: перебои с поставками."},
+    {"id": "himmash",   "time": "01:20", "icon": "factory",   "tone": "info",   "district": "himmash",   "title": "«Химмаш»: внеплановая ночная смена."},
+    {"id": "patrol",    "time": "02:10", "icon": "police",    "tone": "info",   "district": "police",    "title": "Милиция усиливает патрулирование Заводского района."},
+    {"id": "smell",     "time": "03:00", "icon": "biohazard", "tone": "danger", "district": "himmash",   "title": "Жители жалуются на химический запах у реки."},
+    {"id": "inspection","time": "04:00", "icon": "admin",     "tone": "info",   "district": "",          "title": "Горздрав: проверка больниц перенесена на завтра."},
+    {"id": "dawn",      "time": "05:30", "icon": "news",      "tone": "info",   "district": "",          "title": "Первые автобусы вышли на линию."}
+  ]
+}

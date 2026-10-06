@@ -1,0 +1,148 @@
+{
+  "events": [
+    {"id": "crash_m7", "time": "22:06", "category": "ambulance", "icon": "ambulance", "urgent": true,
+     "title": "ДТП на трассе М-7",
+     "headline": "Пострадавший в ДТП. Нужен хирург.",
+     "body": "Скорая с трассы М-7: «Жигули» вылетели под фуру. Водитель, мужчина около 35 лет. Открытый перелом бедра, внутреннее кровотечение. Давление падает.\n\nОперационная: {or_status}. Свободных коек: {free_beds}.",
+     "location": "er", "city_tile": [4, 37], "route": "r_highway_w", "eta": 6,
+     "patients": [{"type": "trauma", "variant": "severe", "label": "Мужчина, ~35. ДТП", "condition": 74}],
+     "choices": [
+       {"id": "accept", "label": "Принять", "hint": "Скорая будет через 6 мин",
+        "effects": [{"type": "spawn_patients"}]},
+       {"id": "redirect", "label": "Перенаправить", "hint": "В 1-ю городскую — 25 мин дороги",
+        "effects": [{"type": "reputation", "value": -6}, {"type": "alarm", "value": 4},
+                    {"type": "notify", "text": "Скорая развернулась на 1-ю городскую. Дорога — 25 минут.", "tone": "warn"}]}
+     ]},
+
+    {"id": "staff_lebedeva", "time": "22:35", "category": "staff", "icon": "phone",
+     "title": "Персонал: Лебедева",
+     "headline": "Медсестра просит отпустить её на час.",
+     "body": "Медсестра Анна Лебедева в ординаторской: «Я третьи сутки подряд. У меня руки трясутся. Отпустите хотя бы на час».\n\nУсталость Лебедевой: {fatigue:nurse_lebedeva}%. Стресс: {stress:nurse_lebedeva}%.",
+     "location": "staffroom", "default_choice": "stay", "decision_minutes": 15,
+     "choices": [
+       {"id": "rest", "label": "Отпустить на час", "hint": "Минус медсестра на 60 мин",
+        "effects": [{"type": "staff_rest", "staff": "nurse_lebedeva", "minutes": 60}]},
+       {"id": "stay", "label": "Попросить остаться", "hint": "Стресс +18",
+        "effects": [{"type": "staff_stress", "staff": "nurse_lebedeva", "value": 18}]},
+       {"id": "bonus", "label": "Премия −2 000 ₽", "hint": "Стресс −10",
+        "effects": [{"type": "money", "value": -2000}, {"type": "staff_stress", "staff": "nurse_lebedeva", "value": -10}]}
+     ]},
+
+    {"id": "cardio_stroiteley", "time": "22:55", "category": "ambulance", "icon": "heart", "urgent": true,
+     "title": "Вызов: ул. Строителей, 14",
+     "headline": "Инфаркт. Нужен кардиолог и реанимация.",
+     "body": "Мужчина, 61 год. Давящая боль за грудиной уже сорок минут. На ЭКГ — подъём ST. Жена говорит, что «скорую ждали час».\n\nРеанимация: свободно коек — {icu_free}.",
+     "location": "er", "city_tile": [22, 5], "route": "r_north", "eta": 7,
+     "patients": [{"type": "cardiac", "variant": "severe", "label": "Мужчина, 61. Инфаркт", "condition": 68}],
+     "choices": [
+       {"id": "accept", "label": "Принять", "hint": "Скорая будет через 7 мин",
+        "effects": [{"type": "spawn_patients"}]},
+       {"id": "redirect", "label": "Перенаправить", "hint": "Кардиоцентр — 40 мин",
+        "effects": [{"type": "reputation", "value": -6}, {"type": "alarm", "value": 4}]}
+     ]},
+
+    {"id": "mass_bus", "time": "23:20", "category": "mass", "icon": "alarm", "urgent": true,
+     "title": "Массовое поступление",
+     "headline": "Авария автобуса. Трое пострадавших.",
+     "body": "Автобус с рабочими «Химмаша» столкнулся с грузовиком на трассе. К нам везут троих.\n\nНужно: 2 врача, 3 медсестры, операционная.\nСвободно сейчас: врачей — {free_doctors}, медсестёр — {free_nurses}.\nОперационная: {or_status}. Свободных коек: {free_beds}.",
+     "location": "er", "city_tile": [24, 37], "route": "r_highway_e", "eta": 8,
+     "patients": [
+       {"type": "trauma", "variant": "severe", "label": "Рабочий, 42. Травма груди", "condition": 64},
+       {"type": "trauma", "variant": "minor", "label": "Рабочая, 29. Перелом руки", "condition": 86},
+       {"type": "cardiac", "variant": "minor", "label": "Водитель, 55. Боль в груди", "condition": 80}
+     ],
+     "choices": [
+       {"id": "accept", "label": "Принять всех", "hint": "3 пациента",
+        "effects": [{"type": "spawn_patients"}]},
+       {"id": "severe_only", "label": "Только тяжёлого", "hint": "Доверие −4",
+        "effects": [{"type": "spawn_patients", "indices": [0]}, {"type": "reputation", "value": -4}]},
+       {"id": "redirect", "label": "Перенаправить", "hint": "Доверие −12, тревога",
+        "effects": [{"type": "reputation", "value": -12}, {"type": "alarm", "value": 10}]}
+     ]},
+
+    {"id": "lab_reagents", "time": "00:10", "category": "lab", "icon": "flask",
+     "title": "Лаборатория: реагенты",
+     "headline": "Закончились реагенты для анализа крови.",
+     "body": "Лаборант Зуева звонит снизу: закончились реагенты для биохимии. Склад обещает только к утру — «перебои с поставками».\n\nБез анализов токсикология займёт вдвое больше времени.",
+     "location": "lab", "default_choice": "wait", "decision_minutes": 15,
+     "choices": [
+       {"id": "buy", "label": "Срочно −3 500 ₽", "hint": "Лаборатория в норме",
+        "effects": [{"type": "money", "value": -3500}, {"type": "notify", "text": "Реагенты привезут через полчаса. Частник, наличными.", "tone": "info"}]},
+       {"id": "wait", "label": "Ждать до утра", "hint": "Анализы ×2 дольше",
+        "effects": [{"type": "flag", "key": "lab_slow", "value": true}, {"type": "notify", "text": "Лаборатория работает вполсилы до утра.", "tone": "warn"}]}
+     ]},
+
+    {"id": "security_er", "time": "00:50", "category": "security", "icon": "shield", "urgent": true,
+     "title": "Приёмное: конфликт",
+     "headline": "Агрессивный посетитель. Нужна охрана.",
+     "body": "В приёмном пьяный мужчина требует пустить его к брату — рабочему с трассы. Кричит, разбил стекло регистратуры. Медсёстры заперлись в процедурной.\n\nНужен охранник в приёмном отделении.",
+     "location": "er", "eta": 0,
+     "patients": [{"type": "incident_security", "variant": "default", "label": "Агрессивный посетитель", "condition": 100}],
+     "choices": [
+       {"id": "accept", "label": "Направить охрану", "hint": "Назначьте охранника",
+        "effects": [{"type": "spawn_patients"}]},
+       {"id": "police", "label": "Вызвать милицию", "hint": "Приедут через 30 мин",
+        "effects": [{"type": "alarm", "value": 6}, {"type": "reputation", "value": -3}, {"type": "flag", "key": "police_called", "value": true},
+                    {"type": "dept_stress", "department": "er", "value": 12},
+                    {"type": "notify", "text": "Дежурный обещал наряд «когда освободится».", "tone": "warn"}]}
+     ]},
+
+    {"id": "toxic_teen", "time": "01:40", "category": "ambulance", "icon": "biohazard", "urgent": true,
+     "title": "Отравление: подросток",
+     "headline": "Девушка, 16. Судороги. Яд неизвестен.",
+     "body": "Девушку подобрали у проходной «Химмаша». Судороги, зрачки как точки, губы синие. Подруга говорит: «Пили что-то с завода». Запах — не спирт.\n\nЛаборатория: {lab_status}.",
+     "location": "er", "city_tile": [33, 27], "route": "r_himmash", "eta": 7,
+     "patients": [{"type": "toxic", "variant": "severe", "label": "Девушка, 16. Отравление", "condition": 72}],
+     "choices": [
+       {"id": "accept", "label": "Принять", "hint": "Скорая будет через 7 мин",
+        "effects": [{"type": "spawn_patients"}, {"type": "flag", "key": "toxic_seen", "value": true}]},
+       {"id": "redirect", "label": "Перенаправить", "hint": "Токсикология области — 1 ч",
+        "effects": [{"type": "reputation", "value": -8}, {"type": "alarm", "value": 5}]}
+     ]},
+
+    {"id": "gunshot", "time": "02:30", "category": "ambulance", "icon": "police", "urgent": true,
+     "title": "Огнестрельное ранение",
+     "headline": "Ранение в живот. Милиция просит молчать.",
+     "body": "Мужчина около 30, огнестрельное в живот. Привезли на частной «девятке», следом — милицейский «УАЗ». Лейтенант просит «пока не оформлять» и ни с кем не говорить.\n\nХирург: {surgeon_status}.",
+     "location": "er", "city_tile": [34, 7], "route": "r_east", "eta": 4,
+     "patients": [{"type": "trauma", "variant": "severe", "label": "Мужчина, ~30. Огнестрел", "condition": 62}],
+     "choices": [
+       {"id": "accept", "label": "Принять", "hint": "Будут через 4 мин",
+        "effects": [{"type": "spawn_patients"}, {"type": "flag", "key": "police_interest", "value": true}]},
+       {"id": "redirect", "label": "Отказать", "hint": "Пусть везут в 1-ю городскую",
+        "effects": [{"type": "reputation", "value": -8}, {"type": "flag", "key": "gunshot_refused", "value": true}]}
+     ]},
+
+    {"id": "strange_patient", "time": "03:20", "category": "ambulance", "icon": "biohazard", "urgent": true,
+     "title": "Странный пациент",
+     "headline": "Те же симптомы, что у девушки в 01:40.",
+     "body": "Мужчина, 40 лет, ночной сторож «Химмаша». Температура 40,2. Судороги, точечные зрачки, синие губы — те же симптомы, что у девушки в 01:40.\n\nФельдшер, тихо: «Это уже третий за неделю по району. Двоих увезли в областную. Обратно не вернули».",
+     "location": "er", "city_tile": [36, 30], "route": "r_himmash", "eta": 6,
+     "patients": [{"type": "toxic", "variant": "severe", "label": "Мужчина, 40. Неясная интоксикация", "condition": 60}],
+     "choices": [
+       {"id": "accept", "label": "Принять", "hint": "Скорая будет через 6 мин",
+        "effects": [{"type": "spawn_patients"}]},
+       {"id": "report", "label": "Принять и сообщить в СЭС", "hint": "Привлечёт внимание",
+        "effects": [{"type": "spawn_patients"}, {"type": "flag", "key": "ses_notified", "value": true}, {"type": "reputation", "value": 3},
+                    {"type": "notify", "text": "СЭС приняла сообщение. Дежурный долго молчал в трубку.", "tone": "warn"}]},
+       {"id": "redirect", "label": "Перенаправить", "hint": "В областную",
+        "effects": [{"type": "reputation", "value": -6}]}
+     ]},
+
+    {"id": "admin_vip", "time": "04:30", "category": "admin", "icon": "admin",
+     "title": "Звонок из горздрава",
+     "headline": "Чиновник требует лучшего врача для родственницы.",
+     "body": "Заместитель главы района Крылов: «У моей тёщи давление. Её сейчас привезут. Отдельную палату и вашего лучшего кардиолога. Я потом не забуду».\n\nСостояние пациентки стабильное. Кардиолог: {cardio_status}.",
+     "location": "admin", "city_tile": [3, 7], "route": "r_west", "eta": 8, "default_choice": "normal",
+     "patients": [{"type": "cardiac", "variant": "vip", "label": "Тёща Крылова, 68. Давление", "condition": 94}],
+     "choices": [
+       {"id": "comply", "label": "Выполнить +8 000 ₽", "hint": "Займёт лучшего кардиолога",
+        "effects": [{"type": "spawn_patients"}, {"type": "money", "value": 8000}, {"type": "flag", "key": "vip_comply", "value": true}]},
+       {"id": "normal", "label": "В общем порядке", "hint": "Крылов запомнит",
+        "effects": [{"type": "spawn_patients", "variant": "minor"}, {"type": "flag", "key": "vip_refused", "value": true}, {"type": "alarm", "value": 4},
+                    {"type": "notify", "text": "Крылов бросил трубку. Это ещё аукнется.", "tone": "warn"}]},
+       {"id": "refuse", "label": "Отказать", "hint": "Мест нет",
+        "effects": [{"type": "flag", "key": "vip_refused", "value": true}, {"type": "reputation", "value": -2}, {"type": "alarm", "value": 6}]}
+     ]}
+  ]
+}

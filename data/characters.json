@@ -1,0 +1,276 @@
+{
+ "characters": [
+  {
+   "id": "doctor_volkov",
+   "surname": "Волков",
+   "first_name": "Андрей",
+   "patronymic": "Петрович",
+   "category": "doctor",
+   "role": "Хирург",
+   "age": 47,
+   "portrait": "doctor_volkov",
+   "accent": "#8fb3c9",
+   "skills": {
+    "surgery": 9,
+    "diagnostics": 6,
+    "cardio": 3,
+    "anesthesia": 3,
+    "care": 4,
+    "strength": 5,
+    "security": 2,
+    "speed": 6
+   },
+   "key_skills": [
+    "surgery",
+    "diagnostics",
+    "speed"
+   ],
+   "traits": [
+    "pressure_proof",
+    "slow_recovery"
+   ],
+   "fatigue": 22,
+   "stress": 18,
+   "bio": "Двадцать лет в хирургии. Говорит мало. После развода живёт в ординаторской.",
+   "motto": "Не бросает операцию"
+  },
+  {
+   "id": "doctor_orlova",
+   "surname": "Орлова",
+   "first_name": "Елена",
+   "patronymic": "Сергеевна",
+   "category": "doctor",
+   "role": "Кардиолог",
+   "age": 39,
+   "portrait": "doctor_orlova",
+   "accent": "#c98f8f",
+   "skills": {
+    "surgery": 3,
+    "diagnostics": 7,
+    "cardio": 9,
+    "anesthesia": 4,
+    "care": 5,
+    "strength": 2,
+    "security": 1,
+    "speed": 7
+   },
+   "key_skills": [
+    "cardio",
+    "diagnostics",
+    "speed"
+   ],
+   "traits": [
+    "attentive",
+    "abrasive"
+   ],
+   "fatigue": 12,
+   "stress": 25,
+   "bio": "Лучший кардиолог района. Уже дважды писала заявление об уходе.",
+   "motto": "Видит инфаркт с порога"
+  },
+  {
+   "id": "doctor_gusev",
+   "surname": "Гусев",
+   "first_name": "Борис",
+   "patronymic": "Ильич",
+   "category": "doctor",
+   "role": "Анестезиолог",
+   "age": 58,
+   "portrait": "doctor_gusev",
+   "accent": "#a9b48f",
+   "skills": {
+    "surgery": 4,
+    "diagnostics": 6,
+    "cardio": 5,
+    "anesthesia": 9,
+    "care": 4,
+    "strength": 3,
+    "security": 1,
+    "speed": 4
+   },
+   "key_skills": [
+    "anesthesia",
+    "cardio",
+    "diagnostics"
+   ],
+   "traits": [
+    "veteran",
+    "smoker"
+   ],
+   "fatigue": 20,
+   "stress": 8,
+   "bio": "Работает в этой больнице с 1964 года. Помнит, кто здесь умирал и почему.",
+   "motto": "Ненавидит ночные смены"
+  },
+  {
+   "id": "doctor_petrov",
+   "surname": "Петров",
+   "first_name": "Дмитрий",
+   "patronymic": "Алексеевич",
+   "category": "doctor",
+   "role": "Врач-интерн",
+   "age": 24,
+   "portrait": "doctor_petrov",
+   "accent": "#9a9ad0",
+   "skills": {
+    "surgery": 5,
+    "diagnostics": 5,
+    "cardio": 4,
+    "anesthesia": 3,
+    "care": 4,
+    "strength": 5,
+    "security": 2,
+    "speed": 8
+   },
+   "key_skills": [
+    "surgery",
+    "diagnostics",
+    "speed"
+   ],
+   "traits": [
+    "fast_learner",
+    "insecure"
+   ],
+   "fatigue": 8,
+   "stress": 30,
+   "bio": "Вторая ночная смена в жизни. Очень хочет, чтобы его заметил Волков.",
+   "motto": "Хочет, чтобы его заметили"
+  },
+  {
+   "id": "nurse_smirnova",
+   "surname": "Смирнова",
+   "first_name": "Ольга",
+   "patronymic": "Ивановна",
+   "category": "nurse",
+   "role": "Старшая медсестра",
+   "age": 44,
+   "portrait": "nurse_smirnova",
+   "accent": "#d0b48a",
+   "skills": {
+    "surgery": 2,
+    "diagnostics": 4,
+    "cardio": 3,
+    "anesthesia": 4,
+    "care": 9,
+    "strength": 4,
+    "security": 2,
+    "speed": 6
+   },
+   "key_skills": [
+    "care",
+    "anesthesia",
+    "speed"
+   ],
+   "traits": [
+    "iron_nerves",
+    "overworks"
+   ],
+   "fatigue": 30,
+   "stress": 12,
+   "bio": "Держит на себе всё отделение. Знает, где лежат последние ампулы.",
+   "motto": "Держит отделение на себе"
+  },
+  {
+   "id": "nurse_lebedeva",
+   "surname": "Лебедева",
+   "first_name": "Анна",
+   "patronymic": "Викторовна",
+   "category": "nurse",
+   "role": "Медсестра",
+   "age": 27,
+   "portrait": "nurse_lebedeva",
+   "accent": "#8fc9b8",
+   "skills": {
+    "surgery": 1,
+    "diagnostics": 3,
+    "cardio": 2,
+    "anesthesia": 2,
+    "care": 7,
+    "strength": 3,
+    "security": 1,
+    "speed": 8
+   },
+   "key_skills": [
+    "care",
+    "speed",
+    "diagnostics"
+   ],
+   "traits": [
+    "energetic",
+    "burnout"
+   ],
+   "fatigue": 58,
+   "stress": 40,
+   "bio": "Третьи сутки подряд. Подменяет подругу, у которой заболел ребёнок.",
+   "motto": "Третьи сутки без сна"
+  },
+  {
+   "id": "orderly_kozlov",
+   "surname": "Козлов",
+   "first_name": "Виктор",
+   "patronymic": "Николаевич",
+   "category": "orderly",
+   "role": "Санитар",
+   "age": 35,
+   "portrait": "orderly_kozlov",
+   "accent": "#a0a8b8",
+   "skills": {
+    "surgery": 0,
+    "diagnostics": 1,
+    "cardio": 0,
+    "anesthesia": 0,
+    "care": 4,
+    "strength": 9,
+    "security": 5,
+    "speed": 6
+   },
+   "key_skills": [
+    "strength",
+    "care",
+    "security"
+   ],
+   "traits": [
+    "strong",
+    "drinks"
+   ],
+   "fatigue": 15,
+   "stress": 20,
+   "bio": "Бывший десантник. Возит каталки, носит носилки, молчит.",
+   "motto": "Молчит и носит"
+  },
+  {
+   "id": "guard_tarasov",
+   "surname": "Тарасов",
+   "first_name": "Игорь",
+   "patronymic": "Семёнович",
+   "category": "security",
+   "role": "Охранник",
+   "age": 52,
+   "portrait": "guard_tarasov",
+   "accent": "#b8a07a",
+   "skills": {
+    "surgery": 0,
+    "diagnostics": 0,
+    "cardio": 0,
+    "anesthesia": 0,
+    "care": 2,
+    "strength": 7,
+    "security": 8,
+    "speed": 4
+   },
+   "key_skills": [
+    "security",
+    "strength",
+    "speed"
+   ],
+   "traits": [
+    "ex_cop",
+    "slow"
+   ],
+   "fatigue": 10,
+   "stress": 10,
+   "bio": "Ушёл из милиции в 91-м. Говорит, что «по-хорошему». Никто не верит.",
+   "motto": "Решает «по-хорошему»"
+  }
+ ]
+}

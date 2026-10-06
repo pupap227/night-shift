@@ -1,0 +1,65 @@
+{
+  "patient_types": [
+    {"id": "trauma", "name": "Травма", "icon": "trauma", "decay": 0.75, "reward": 4200,
+     "variants": {
+       "severe": [
+         {"department": "er", "duration": 12, "label": "Первичный осмотр",
+          "slots": [{"label": "Врач", "any": ["surgery", "diagnostics"], "min": 5},
+                    {"label": "Медсестра", "any": ["care"], "min": 4}]},
+         {"department": "or1", "duration": 60, "label": "Операция",
+          "slots": [{"label": "Хирург", "any": ["surgery"], "min": 7},
+                    {"label": "Анестезиолог", "any": ["anesthesia"], "min": 6},
+                    {"label": "Медсестра", "any": ["care"], "min": 5}]}
+       ],
+       "minor": [
+         {"department": "er", "duration": 25, "label": "Обработка и гипс",
+          "slots": [{"label": "Врач", "any": ["surgery", "diagnostics"], "min": 4},
+                    {"label": "Медсестра", "any": ["care"], "min": 3}]}
+       ]
+     }},
+    {"id": "cardiac", "name": "Кардио", "icon": "heart", "decay": 0.8, "reward": 3600,
+     "variants": {
+       "severe": [
+         {"department": "er", "duration": 8, "label": "ЭКГ и осмотр",
+          "slots": [{"label": "Врач", "any": ["cardio", "diagnostics"], "min": 5}]},
+         {"department": "icu", "duration": 40, "label": "Интенсивная терапия",
+          "slots": [{"label": "Кардиолог", "any": ["cardio"], "min": 6},
+                    {"label": "Медсестра", "any": ["care"], "min": 4}]}
+       ],
+       "minor": [
+         {"department": "er", "duration": 20, "label": "Осмотр и наблюдение",
+          "slots": [{"label": "Врач", "any": ["cardio", "diagnostics"], "min": 4}]}
+       ],
+       "vip": [
+         {"department": "er", "duration": 15, "label": "Персональный осмотр",
+          "slots": [{"label": "Лучший кардиолог", "any": ["cardio"], "min": 8}]},
+         {"department": "ward", "duration": 25, "label": "Отдельная палата",
+          "slots": [{"label": "Медсестра", "any": ["care"], "min": 5}]}
+       ]
+     }},
+    {"id": "toxic", "name": "Интоксикация", "icon": "biohazard", "decay": 0.7, "reward": 2800,
+     "variants": {
+       "severe": [
+         {"department": "er", "duration": 10, "label": "Стабилизация",
+          "slots": [{"label": "Врач", "any": ["diagnostics", "anesthesia"], "min": 5},
+                    {"label": "Санитар", "any": ["strength"], "min": 5}]},
+         {"department": "lab", "duration": 25, "label": "Токсикология", "lab": true,
+          "slots": [{"label": "Диагност", "any": ["diagnostics"], "min": 6}]},
+         {"department": "icu", "duration": 30, "label": "Детоксикация",
+          "slots": [{"label": "Врач", "any": ["anesthesia", "cardio", "diagnostics"], "min": 5},
+                    {"label": "Медсестра", "any": ["care"], "min": 4}]}
+       ]
+     }},
+    {"id": "incident_security", "name": "Инцидент", "icon": "shield", "is_patient": false, "decay": 1.6, "reward": 0,
+     "fail_text": "Посетитель избил санитара и сорвал дверь процедурной. Милиция составляет протокол.",
+     "success_text": "Охрана вывела посетителя. В приёмном снова тихо.",
+     "fail_effects": [{"type": "alarm", "value": 12}, {"type": "reputation", "value": -4},
+                      {"type": "dept_stress", "department": "er", "value": 20}],
+     "variants": {
+       "default": [
+         {"department": "er", "duration": 12, "label": "Успокоить посетителя",
+          "slots": [{"label": "Охрана", "any": ["security"], "min": 5}]}
+       ]
+     }}
+  ]
+}

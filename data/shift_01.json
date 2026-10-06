@@ -1,0 +1,17 @@
+{
+  "day": 12,
+  "hospital_name": "Городская больница №3",
+  "hospital_subtitle": "Заводской район",
+  "start": "22:00",
+  "duration_minutes": 480,
+  "seconds_per_minute": 1.5,
+  "money": 48320,
+  "reputation": 62,
+  "objectives": [
+    {"id": "no_deaths", "text": "Не допустить смертей по вине задержки", "type": "max_deaths", "value": 0},
+    {"id": "icu", "text": "Не допустить перегрузки реанимации", "type": "icu_not_full"},
+    {"id": "alarm", "text": "Удержать тревогу ниже «Кризиса»", "type": "alarm_below", "value": 2},
+    {"id": "budget", "text": "Бюджет выше 40 000 ₽", "type": "money_above", "value": 40000},
+    {"id": "survive", "text": "Продержаться до 06:00", "type": "survive"}
+  ]
+}

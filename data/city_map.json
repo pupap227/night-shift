@@ -1,0 +1,138 @@
+{
+  "size": [44, 44],
+  "tile": [64, 32],
+  "floor_height": 11,
+  "camera_start": [18.5, 17.5],
+  "camera_zoom": 1.05,
+
+  "zones": [
+    {"rect": [0, 0, 44, 44],  "ground": "grass"},
+    {"rect": [10, 8, 18, 18], "ground": "yard"},
+    {"rect": [18, 21, 4, 3],  "ground": "parking"},
+    {"rect": [30, 28, 14, 8], "ground": "industrial"},
+    {"rect": [0, 39, 44, 5],  "ground": "field"},
+    {"rect": [11, 39, 6, 3],  "ground": "asphalt"},
+    {"rect": [31, 8, 5, 5],   "ground": "asphalt"},
+    {"rect": [3, 9, 5, 5],    "ground": "asphalt"}
+  ],
+
+  "roads": [
+    {"rect": [8, 0, 2, 44],   "kind": "avenue",  "name": "Проспект Мира"},
+    {"rect": [28, 0, 2, 36],  "kind": "street",  "name": "ул. Больничная"},
+    {"rect": [38, 0, 2, 36],  "kind": "street",  "name": "ул. Заводская"},
+    {"rect": [0, 6, 44, 2],   "kind": "street",  "name": "ул. Строителей"},
+    {"rect": [0, 26, 44, 2],  "kind": "street",  "name": "Заводское шоссе"},
+    {"rect": [0, 36, 44, 3],  "kind": "highway", "name": "Трасса М-7"},
+    {"rect": [10, 20, 2, 1],  "kind": "drive",   "name": ""}
+  ],
+
+  "buildings": [
+    {"id": "b_ward",   "rect": [11, 9.8, 5.6, 4], "floors": 4, "style": "main_hall", "height": 74, "lit": 0.62},
+    {"id": "b_icu",    "rect": [19, 10, 4, 3], "floors": 3, "style": "icu", "height": 42, "lit": 0.45},
+    {"id": "b_er",     "rect": [11, 16, 5, 3], "floors": 2, "style": "er_annex", "height": 30, "lit": 0.85},
+    {"id": "b_or",     "rect": [18, 16, 4, 3], "floors": 3, "style": "surgery", "height": 44, "lit": 0.4},
+    {"id": "b_lab",    "rect": [23, 16, 3, 3], "floors": 2, "style": "lab", "height": 27, "lit": 0.7},
+    {"id": "b_admin",  "rect": [11, 22.6, 3, 1.4], "floors": 2, "style": "hosp_brick", "roof": "flat", "lit": 0.25},
+    {"id": "b_staff",  "rect": [14, 22.6, 2, 1.4], "floors": 1, "style": "hosp_brick", "roof": "flat", "lit": 0.95},
+    {"id": "b_morgue", "rect": [23, 22.6, 2, 1.4], "floors": 1, "style": "morgue", "height": 12, "lit": 0.0},
+
+    {"id": "n1", "rect": [1, 1, 5, 2],  "floors": 9,  "style": "panel", "lit": 0.3},
+    {"id": "n2", "rect": [11, 1, 7, 2], "floors": 5,  "style": "panel", "lit": 0.25},
+    {"id": "n3", "rect": [12, 4, 3, 1], "floors": 1,  "style": "shop",  "lit": 0.6, "sign": "shop"},
+    {"id": "n4", "rect": [20, 1, 6, 2], "floors": 9,  "style": "panel", "lit": 0.3},
+    {"id": "n5", "rect": [21, 4, 2, 1], "floors": 1,  "style": "garage","lit": 0.0},
+    {"id": "n6", "rect": [31, 1, 5, 2], "floors": 5,  "style": "brick", "lit": 0.2},
+    {"id": "n7", "rect": [40, 1, 3, 4], "floors": 12, "style": "panel", "lit": 0.25},
+
+    {"id": "w1", "rect": [1, 9, 2, 6],  "floors": 5, "style": "panel", "lit": 0.3},
+    {"id": "police", "rect": [4, 10, 3, 3], "floors": 2, "style": "police", "roof": "flat", "lit": 0.7, "accent": "#3a6fc8"},
+    {"id": "w2", "rect": [1, 17, 2, 6], "floors": 9, "style": "panel", "lit": 0.25},
+    {"id": "w3", "rect": [4, 16, 3, 2], "floors": 5, "style": "brick", "lit": 0.3},
+    {"id": "w4", "rect": [4, 21, 3, 3], "floors": 3, "style": "brick", "lit": 0.2},
+
+    {"id": "fire", "rect": [31, 9, 4, 3], "floors": 2, "style": "fire", "roof": "flat", "lit": 0.6, "accent": "#c8543a"},
+    {"id": "e1", "rect": [31, 14, 2, 6], "floors": 9, "style": "panel", "lit": 0.3},
+    {"id": "e2", "rect": [34, 14, 3, 2], "floors": 5, "style": "brick", "lit": 0.25},
+    {"id": "e3", "rect": [34, 18, 3, 2], "floors": 5, "style": "brick", "lit": 0.3},
+    {"id": "e4", "rect": [31, 22, 5, 2], "floors": 5, "style": "panel", "lit": 0.25},
+    {"id": "e5", "rect": [40, 9, 3, 6],  "floors": 12, "style": "panel", "lit": 0.2},
+    {"id": "e6", "rect": [40, 18, 3, 5], "floors": 9,  "style": "panel", "lit": 0.25},
+
+    {"id": "h1", "rect": [1, 29, 2, 2],  "floors": 1, "style": "house", "roof": "pitched", "lit": 0.4},
+    {"id": "h2", "rect": [4, 29, 2, 2],  "floors": 1, "style": "house", "roof": "pitched", "lit": 0.2},
+    {"id": "h3", "rect": [1, 32, 2, 2],  "floors": 1, "style": "house", "roof": "pitched", "lit": 0.3},
+    {"id": "h4", "rect": [4, 32, 2, 2],  "floors": 1, "style": "house", "roof": "pitched", "lit": 0.1},
+    {"id": "h5", "rect": [11, 29, 2, 2], "floors": 1, "style": "house", "roof": "pitched", "lit": 0.3},
+    {"id": "h6", "rect": [14, 29, 2, 2], "floors": 1, "style": "house", "roof": "pitched", "lit": 0.0},
+    {"id": "h7", "rect": [11, 32, 2, 2], "floors": 1, "style": "house", "roof": "pitched", "lit": 0.4},
+    {"id": "h8", "rect": [14, 32, 2, 2], "floors": 1, "style": "house", "roof": "pitched", "lit": 0.2},
+    {"id": "school", "rect": [19, 29, 6, 3], "floors": 3, "style": "brick", "lit": 0.05},
+
+    {"id": "factory",  "rect": [31, 29, 6, 4], "floors": 3, "style": "industrial", "roof": "saw", "lit": 0.35},
+    {"id": "chimney",  "rect": [37, 30, 1, 1], "floors": 14, "style": "chimney", "lit": 0.0},
+    {"id": "chimney2", "rect": [35, 33, 1, 1], "floors": 10, "style": "chimney", "lit": 0.0},
+    {"id": "warehouse","rect": [40, 29, 3, 5], "floors": 2, "style": "industrial", "roof": "flat", "lit": 0.1},
+    {"id": "tank1",    "rect": [31, 34, 1, 1], "floors": 2, "style": "tank", "lit": 0.0},
+    {"id": "tank2",    "rect": [33, 34, 1, 1], "floors": 2, "style": "tank", "lit": 0.0},
+
+    {"id": "gas", "rect": [12, 40, 3, 1], "floors": 1, "style": "shop", "lit": 0.9, "sign": "gas"}
+  ],
+
+  "trees": {"seed": 7, "density": 0.11, "zones": ["grass", "field"]},
+  "fixed_trees": [[10.6, 9.0], [10.6, 11.4], [10.6, 13.8], [17.2, 9.0], [24.4, 9.4], [26.4, 12.0], [26.4, 14.4], [26.4, 21.0], [16.7, 9.6], [25.2, 24.6], [10.6, 23.5], [19.0, 24.6]],
+  "lamp_spacing": 5,
+
+  "lanes": [
+    {"points": [[8.5, -2], [8.5, 46]],    "speed": 2.2, "count": 3},
+    {"points": [[9.5, 46], [9.5, -2]],    "speed": 2.2, "count": 3},
+    {"points": [[-2, 6.5], [46, 6.5]],    "speed": 1.8, "count": 2},
+    {"points": [[46, 7.5], [-2, 7.5]],    "speed": 1.8, "count": 2},
+    {"points": [[-2, 26.5], [46, 26.5]],  "speed": 1.8, "count": 2},
+    {"points": [[46, 27.5], [-2, 27.5]],  "speed": 1.8, "count": 1},
+    {"points": [[28.5, -2], [28.5, 36]],  "speed": 1.6, "count": 1},
+    {"points": [[29.5, 36], [29.5, -2]],  "speed": 1.6, "count": 1},
+    {"points": [[-2, 36.5], [46, 36.5]],  "speed": 3.0, "count": 3, "trucks": 0.4},
+    {"points": [[46, 37.5], [-2, 37.5]],  "speed": 3.0, "count": 3, "trucks": 0.4},
+    {"points": [[46, 38.4], [-2, 38.4]],  "speed": 2.4, "count": 2, "trucks": 0.7}
+  ],
+
+  "walkways": [
+    [[7.7, 0], [7.7, 35.5]],
+    [[10.25, 0], [10.25, 35.5]],
+    [[0, 5.75], [44, 5.75]],
+    [[0, 8.25], [44, 8.25]],
+    [[0, 25.75], [44, 25.75]],
+    [[0, 28.25], [44, 28.25]],
+    [[27.75, 8], [27.75, 25.5]],
+    [[30.25, 8], [30.25, 25.5]]
+  ],
+
+  "hospital_paths": {"corridors": [14.8, 20.4, 24.6], "connector_x": 17.0},
+
+  "routes": {
+    "r_highway_w": [[3, 37.5], [9.5, 37.5], [9.5, 20.5], [11.6, 20.5]],
+    "r_highway_e": [[24, 37.5], [9.5, 37.5], [9.5, 20.5], [11.6, 20.5]],
+    "r_north":     [[22, 6.5], [9.5, 6.5], [9.5, 20.5], [11.6, 20.5]],
+    "r_himmash":   [[33, 27.5], [9.5, 27.5], [9.5, 20.5], [11.6, 20.5]],
+    "r_east":      [[34, 7.5], [9.5, 7.5], [9.5, 20.5], [11.6, 20.5]],
+    "r_west":      [[3, 7.5], [9.5, 7.5], [9.5, 20.5], [11.6, 20.5]]
+  },
+  "ambulance_bay": [11.6, 20.5],
+  "parked_ambulances": [[19.0, 21.6], [20.0, 21.6]],
+  "parked_cars": [[18.6, 22.6], [19.6, 22.6], [21.2, 22.6], [18.6, 23.5], [20.6, 23.5], [32.0, 11.6], [5.2, 13.6], [6.2, 13.6]],
+
+  "pois": [
+    {"id": "police",  "name": "Отделение милиции №7", "short": "Милиция", "icon": "police", "building": "police",
+     "description": "Дежурная часть. Ночью — двое и «УАЗ» с одной фарой."},
+    {"id": "fire",    "name": "Пожарная часть №4", "short": "Пожарная часть", "icon": "fire", "building": "fire",
+     "description": "Два расчёта. На вызовы с трассы выезжают вместе со скорой."},
+    {"id": "himmash", "name": "Завод «Химмаш»", "short": "«Химмаш»", "icon": "factory", "building": "factory",
+     "description": "Градообразующее предприятие. Ночью трубы дымят сильнее, чем днём."},
+    {"id": "highway", "name": "Трасса М-7", "short": "Трасса М-7", "icon": "car", "tile": [22, 37.5],
+     "description": "Главная причина ночных поступлений. Фуры, гололёд, водители без сна."},
+    {"id": "north",   "name": "Жилой район «Северный»", "short": "Северный", "icon": "house", "building": "n4",
+     "description": "Панельные девятиэтажки. Лифты не работают с осени."},
+    {"id": "school",  "name": "Частный сектор · Школа №11", "short": "Частный сектор", "icon": "house", "building": "school",
+     "description": "Деревянные дома, печное отопление. Зимой — угарный газ."}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "skills": {
+    "surgery":    {"label": "Хирургия",     "short": "ХИР"},
+    "diagnostics":{"label": "Диагностика",  "short": "ДИА"},
+    "cardio":     {"label": "Кардиология",  "short": "КАР"},
+    "anesthesia": {"label": "Анестезия",    "short": "АНС"},
+    "care":       {"label": "Уход",         "short": "УХД"},
+    "strength":   {"label": "Сила",         "short": "СИЛ"},
+    "security":   {"label": "Охрана",       "short": "ОХР"},
+    "speed":      {"label": "Скорость",     "short": "СКР"}
+  },
+  "categories": [
+    {"id": "all",      "label": "Все"},
+    {"id": "doctor",   "label": "Врачи"},
+    {"id": "nurse",    "label": "Медсёстры"},
+    {"id": "orderly",  "label": "Санитары"},
+    {"id": "security", "label": "Охрана"}
+  ]
+}
